@@ -1,0 +1,174 @@
+/* static/css/main.css (SIFIRDAN YAZILDI - PROFESYONEL MİMARİ) */
+
+/* * AŞAMA 1: TASARIM DESENİ - CSS Değişkenleri (Theming)
+ * (P2: Dark Mode'dan Light Mode'a geçiş)
+ * Sitenin tüm renk paleti "profesyonel" bir şekilde burada yönetilir.
+ */
+:root {
+    --primary-color: #0d6efd;   /* Yeni ana rengimiz (standart Bootstrap mavisi) */
+    --primary-hover: #0b5ed7;   /* Hover rengi */
+    --bg-color: #f8f9fa;        /* Arka plan (Bootstrap light) */
+    --surface-color: #ffffff;   /* Kart, Navbar arka planı (Beyaz) */
+    --text-color: #212529;      /* Ana metin (Bootstrap dark) */
+    --text-muted: #6c757d;      /* İkincil metin (Bootstrap muted) */
+    --border-color: #dee2e6;    /* Kenarlık rengi */
+
+    --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+/* * AŞAMA 2: Global (Genel) Stiller
+ * (P1: Gereksiz 'body' kodlarını temizleme)
+ */
+body {
+    font-family: var(--font-sans);
+    background-color: var(--bg-color);
+    color: var(--text-color);
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: var(--primary-color);
+    font-weight: 700;
+}
+
+/* Sayfa açılış animasyonu (P1: Gereksiz değil, kalsın) */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(15px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+.content-wrapper {
+    animation: fadeIn 0.6s ease-out;
+}
+
+/* * AŞAMA 3: Bileşen (Component) Stilleri
+ * (P1: Modüler tasarım)
+ */
+
+/* --- Navbar --- */
+.navbar {
+    background-color: rgba(255, 255, 255, 0.8) !important;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.04);
+}
+.navbar-brand {
+    color: var(--primary-color) !important;
+    font-weight: 700;
+}
+.nav-link {
+    font-weight: 500;
+    color: var(--text-color) !important;
+}
+.nav-link:hover {
+    color: var(--primary-color) !important;
+}
+
+/* --- Hero (Karşılama) Seksiyonu --- */
+.hero-section {
+    padding: 5rem 0;
+    background-color: var(--surface-color);
+    border-bottom: 1px solid var(--border-color);
+}
+.profile-image {
+    width: 250px; /* Daha küçük, daha zarif */
+    height: 250px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 5px solid var(--primary-color);
+    box-shadow: 0 0 40px rgba(13, 110, 253, 0.2);
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+.profile-image:hover {
+    transform: scale(1.05);
+}
+.hero-text h1 {
+    font-size: 3.5rem;
+    color: var(--text-color) !important;
+}
+.hero-text .highlight {
+    color: var(--primary-color); /* Vurgu */
+}
+.hero-text p.lead {
+    font-size: 1.2rem;
+    color: var(--text-muted);
+}
+.social-links a {
+    font-size: 2.2rem;
+    color: var(--text-muted);
+    margin-right: 1.25rem;
+    transition: color 0.2s, transform 0.2s;
+    display: inline-block;
+}
+.social-links a:hover {
+    color: var(--primary-color);
+    transform: translateY(-5px);
+}
+
+/* --- Alt Sayfa Başlıkları (P3: Daha az boşluk) --- */
+.page-header { 
+    text-align: center;
+
+    /* P2: Boşluğu azalt (Sadece üstte boşluk bırak) */
+    padding-top: 3.5rem; 
+
+    /* P2: İçerikle (kartlar/yazılar) arasındaki boşluk */
+    margin-bottom: 2.5rem; 
+}
+.page-header h1 {
+    font-size: 2.8rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+.page-header p.lead {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* --- Proje Kartları (Light Mode) --- */
+.custom-card {
+    background-color: var(--surface-color);
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+.custom-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    border-color: var(--primary-color);
+}
+.custom-card .card-img-top {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+/* --- 'Medium Benzeri' Blog Stili (P4: Yeniden tasarlandı) --- */
+.blog-post-list {
+    max-width: 750px;
+    margin: 0 auto;
+}
+.blog-post-item {
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--border-color);
+    transition: opacity 0.2s ease-in-out;
+}
+.blog-post-item:hover {
+    opacity: 0.8;
+}
+.blog-post-item h2 {
+    margin-bottom: 0.5rem;
+    font-size: 1.8rem; /* Daha okunaklı */
+}
+.blog-post-item h2 a {
+    text-decoration: none;
+    color: var(--primary-color);
+}
+.blog-post-item .post-meta {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    margin-bottom: 1rem;
+}
+.blog-post-item .post-snippet {
+    font-size: 1.1rem;
+    color: var(--text-color);
+    line-height: 1.7;
+}

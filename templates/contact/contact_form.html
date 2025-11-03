@@ -1,0 +1,37 @@
+{% extends '_base.html' %}
+
+{% block title %}İletişim{% endblock title %}
+
+{% block content %}
+
+<div class="container-fluid">
+    <div class="page-header">
+        <h1>İletişime Geçin</h1>
+        <p class="lead">
+            Fikirleriniz, sorularınız veya iş teklifleriniz için bana ulaşabilirsiniz.
+        </p>
+    </div>
+
+    <div class="container" style="max-width: 800px;">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+
+                <form method="POST" class="bg-light p-4 p-md-5 rounded shadow-sm" style="--bs-bg-opacity: .1;">
+
+                    {% csrf_token %}
+
+                    {{ form.as_p }}
+
+                    <div class="text-center mt-4">
+                        <button type="submit" class="btn btn-primary btn-lg">
+                            <i class="bi bi-send"></i> Mesajı Gönder
+                        </button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
