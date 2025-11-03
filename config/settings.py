@@ -47,6 +47,10 @@ ALLOWED_HOSTS = [
     '.railway.app', # <-- Railway'in bize vereceği link
 ]
 
+CSRF_TRUSTED_ORIGINS = [
+    'https://web-production-934b.up.railway.app',
+]
+
 # Application definition
 
 INSTALLED_APPS = [
