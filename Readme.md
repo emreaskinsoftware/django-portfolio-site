@@ -1,56 +1,115 @@
-# 🚀 Full-Stack Django Portfolyo Sitesi (Proje 5)
+# 🚀 Full-Stack Django Portfolio Website
 
-Bu proje, "kıdemli" (senior) yazılım mimarisi prensipleri (SRP, DRY, MVT) kullanılarak sıfırdan inşa edilmiş, "profesyonel" (professional) ve "tam yığın" (full-stack) bir portfolyo web sitesidir.
+This project is a **professional full-stack portfolio website** built using Django, applying **senior-level software architecture principles** such as SRP (Single Responsibility), DRY (Don’t Repeat Yourself), and MVT (Model-View-Template).
 
-**Canlı Demo Linki:** `[Henüz Dağıtılmadı - Yakında Eklenecek]`
+> 🔗 **Live Demo:** *Not deployed yet — coming soon*
 
 ---
 
-## ✨ "Kıdemli" (Senior) Mimari ve "Profesyonel" (Professional) Özellikler
+## ✨ Key Features & Architecture
 
-Bu proje, "çalışan" bir prototipten öte, "sürdürülebilir" (maintainable) ve "güvenli" (secure) bir yazılım ürünü olarak tasarlanmıştır:
+### 🧱 1. Modular & Maintainable Architecture
 
-### 1. Modüler Mimari (SRP & DRY Tasarım Desenleri)
-* **SRP (Tek Sorumluluk Prensibi):** Proje, her biri kendi "profesyonel" (senior) sorumluluğuna sahip **5 ayrı Django "App" (Uygulama)** modülüne bölünmüştür: `pages`, `projects`, `blog`, `contact` ve `ratelimit`.
-* **DRY (Kendini Tekrar Etme):** Sitedeki tüm "iskelet" (HTML/CSS/JS) ve "görünüm" (Navbar, Footer), `_base.html` şablonu tarafından "miras" (inheritance) alınarak "profesyonelce" (senior) yönetilir.
+Designed as a *scalable, secure, and production-ready* system:
 
-### 2. "Profesyonel" (Senior) Backend (Django MVT + Formlar)
-* **Modeller (MVT - Model):** `projects` ve `blog` modülleri, "kıdemli" (senior) veritabanı ilişkileri (örn: `ProjectGalleryImage` için `ForeignKey`) kullanır.
-* **Zengin İçerik (CKEditor):** "Blog" modülü, "aptal" (dumb) `TextField` yerine, "profesyonel" (senior) bir "Zengin Metin Editörü" (`django-ckeditor`) kullanarak `/admin/` panelinden "grafik/resim/kod bloğu" yüklemeyi destekler.
-* **Proje Galerisi (Inline Admin):** "Projeler" modülü, "kıdemli" (senior) bir "Bire-Çok" (One-to-Many) mimari kullanarak, `/admin/` panelinde "iç içe" (`TabularInline`) bir "Çoklu Resim Galerisi" yönetimi sunar.
-* **Güvenli Formlar (MVT - Form):** "İletişim" modülü, `forms.py` kullanarak "profesyonel" (senior) `CSRF` korumalı ve "sunucu taraflı doğrulama" (server-side validation) yapan bir form kullanır.
+* **SRP (Single Responsibility):** The project is divided into 5 independent Django apps — `pages`, `projects`, `blog`, `contact`, and `ratelimit`.
+* **DRY (Don’t Repeat Yourself):** Shared UI elements (Navbar, Footer, etc.) are managed via `_base.html` and extended by all templates.
 
-### 3. "Kıdemli" (Senior) Güvenlik Mimarisi
-* **Gizli Anahtar (Secret Key) Koruması:** `SECRET_KEY` ve `EMAIL_HOST_PASSWORD` gibi "hassas" (sensitive) veriler, `settings.py`'ye "hard-coded" (doğrudan) yazılmamış, `.env` dosyası kullanılarak "profesyonelce" (senior) soyutlanmıştır.
-* **.gitignore:** `.env` dosyası ve `venv` klasörü, `.gitignore` tarafından "profesyonelce" (senior) görmezden gelinerek *asla* GitHub'a yüklenmez.
-* **Spam Koruması (Ratelimit):** "İletişim" formu, "kıdemli" (senior) bir "profesyonel" (professional) kütüphane (`django-ratelimit`) kullanarak "Brute Force" ve "Spam" saldırılarına karşı (örn: 1 dakikada 5 istek) "profesyonelce" (senior) korunmaktadır.
+### ⚙️ 2. Backend (Django MVT + Forms)
 
-### 4. "Profesyonel" (Professional) Frontend (Bootstrap 5 + Özel CSS)
-* **Tasarım Mimarisi:** Site, `Bootstrap 5`'in "görünmez" (invisible) "Grid" (Izgara) ve "Yardımcı" (Utility) sınıflarını "temel" (base) olarak kullanır.
-* **Özel Tema (CSS Variables):** "Jenerik" (generic) Bootstrap görünümünden kaçınmak için, `main.css` dosyası "kıdemli" (senior) "CSS Değişkenleri" (`:root`) kullanarak "profesyonel" (professional) ve "markalı" (branded) (Light Mode) bir "özel cilt" (custom skin) uygular.
-* **Animasyonlar (AOS & CSS):** Sitede "durağan" (static) bir hissi engellemek için, `AOS (Animate on Scroll)` kütüphanesi (kaydırmada belirme) ve "profesyonel" (senior) CSS `transition`'ları (hover efektleri) kullanılır.
+* **Relational Models:** Uses proper one-to-many relations (e.g., `ProjectGalleryImage` with `ForeignKey`).
+* **Rich Text Editing:** Integrated **CKEditor** for professional blog content management (images, code snippets, formatted text).
+* **Inline Admin:** Admin panel supports inline gallery image management for each project.
+* **Secure Forms:** Contact form is CSRF-protected and server-side validated using Django’s `forms.py`.
 
-## 🚀 Kullanılan Ana Teknolojiler
+### 🔒 3. Security & Environment Management
 
-* **Backend:** Django, Python
-* **Frontend:** HTML5, CSS3 (CSS Variables), Bootstrap 5, AOS.js
-* **Veritabanı:** SQLite (Geliştirme)
-* **Admin/CMS:** django-ckeditor (Zengin Metin Editörü), Pillow (Resim İşleme)
-* **Güvenlik:** django-ratelimit (Spam Koruması), django-environ (`.env` yönetimi)
+* **Environment Variables:** Sensitive keys (e.g. `SECRET_KEY`, `EMAIL_HOST_PASSWORD`) stored in `.env` using `django-environ`.
+* **Git Ignore Rules:** `.env`, `venv`, and database files are excluded from Git to prevent leaks.
+* **Spam Protection:** Integrated `django-ratelimit` to prevent brute-force/spam attacks (e.g., max 5 requests/minute per IP).
 
-## 🏃‍♂️ Yerel (Local) Kurulum
+### 🎨 4. Frontend (Bootstrap 5 + Custom Styling)
 
-1.  Bu repoyu klonlayın.
-2.  Bir sanal ortam (virtual environment) oluşturun: `python -m venv venv`
-3.  Aktive edin: `.\venv\Scripts\activate` (Windows) veya `source venv/bin/activate` (macOS/Linux)
-4.  Gerekli kütüphaneleri "profesyonelce" (senior) `requirements.txt`'den kurun: `pip install -r requirements.txt`
-5.  Gerekli veritabanı "göçlerini" (migrations) uygulayın: `python manage.py migrate`
-6.  Admin paneli için bir "süper kullanıcı" (superuser) oluşturun: `python manage.py createsuperuser`
-7.  Sunucuyu başlatın: `python manage.py runserver`
-8.  Siteye `http://127.0.0.1:8000/` adresinden, Admin paneline `http://127.0.0.1:8000/admin/` adresinden erişin.
+* **Responsive Design:** Built with Bootstrap’s grid and utility system.
+* **Custom Theme:** Uses `main.css` with CSS Variables (`:root`) for branded light-mode color palette.
+* **Smooth Animations:** Enhanced with AOS (Animate on Scroll) and CSS transitions for a polished user experience.
 
-## 👤 Yazar
+---
 
-* **EMRE AŞKIN**
-* [(https://github.com/emreaskinsoftware)]
-* [www.linkedin.com/in/emre-askin]
+## 🧠 Tech Stack
+
+| Layer       | Technology                                 |
+| ----------- | ------------------------------------------ |
+| Backend     | Django (Python)                            |
+| Frontend    | HTML5, CSS3, Bootstrap 5, AOS.js           |
+| Database    | SQLite (Development)                       |
+| CMS / Admin | django-ckeditor, Pillow                    |
+| Security    | django-ratelimit, django-environ           |
+| Deployment  | Docker, Gunicorn, Nginx (Production Ready) |
+
+---
+
+## ⚡ Local Setup (Development)
+
+```bash
+# 1️⃣ Clone the repository
+git clone https://github.com/emreaskinsoftware/django-portfolio.git
+cd django-portfolio
+
+# 2️⃣ Create a virtual environment
+python -m venv venv
+source venv/bin/activate      # macOS/Linux
+.\venv\Scripts\activate       # Windows
+
+# 3️⃣ Install dependencies
+pip install -r requirements.txt
+
+# 4️⃣ Apply migrations
+python manage.py migrate
+
+# 5️⃣ Create a superuser
+python manage.py createsuperuser
+
+# 6️⃣ Run the development server
+python manage.py runserver
+```
+
+Visit:
+🌐 [http://127.0.0.1:8000/](http://127.0.0.1:8000/) → Portfolio site
+🔑 [http://127.0.0.1:8000/admin/](http://127.0.0.1:8000/admin/) → Admin panel
+
+---
+
+## 🐳 Docker Setup (Production Ready)
+
+To build and run the app with Docker (Gunicorn + Nginx stack):
+
+```bash
+docker compose -f docker-compose.prod.yml up --build
+```
+
+Access it via:
+🔘 [http://localhost](http://localhost)
+
+---
+
+## 🧰 Project Highlights
+
+* ✅ Modular, extensible Django architecture
+* ✅ Secure `.env`-based configuration
+* ✅ Ready for Gunicorn + Nginx deployment
+* ✅ Rate-limited contact form (anti-spam)
+* ✅ Responsive & animated frontend
+
+---
+
+## 👤 Author
+
+**👨‍💻 EMRE AŞKIN**
+
+* 🔗 [GitHub Profile](https://github.com/emreaskinsoftware)
+* 💼 [LinkedIn](https://www.linkedin.com/in/emre-askin)
+
+---
+
+> *“Professional code is not just about making it work — it’s about making it last.”*
