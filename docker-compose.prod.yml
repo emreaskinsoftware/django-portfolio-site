@@ -1,0 +1,28 @@
+version: "3.9"
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile.prod
+    container_name: django-portfolio-web
+    env_file:
+      - .env
+    volumes:
+      - .:/app
+    expose:
+      - 8000
+    restart: always
+
+  nginx:
+    image: nginx:latest
+    container_name: django-portfolio-nginx
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf
+      - ./staticfiles:/app/staticfiles
+      - ./media:/app/media
+    depends_on:
+      - web
+    restart: always

@@ -1,5 +1,53 @@
-# .gitignore
+# ===========================
+# 🐍 Python / Django
+# ===========================
+__pycache__/
+*.py[cod]
+*.sqlite3
+db.sqlite3
+*.log
+
+# ===========================
+# 🧠 Virtualenv / Environment
+# ===========================
 venv/
 .venv/
-__pycache__/
-.env 
+env/
+ENV/
+env.bak/
+.env
+.env.*
+
+# ===========================
+# 📦 Django static & media
+# ===========================
+/staticfiles/
+/media/
+/static/
+
+# ===========================
+# 🐳 Docker
+# ===========================
+# Docker build cache & artifacts
+*.pid
+*.tar
+*.sock
+*.log
+Dockerfile.prod
+docker-compose.override.yml
+# (optional) if you don't want to push big compose files:
+# docker-compose.prod.yml
+
+# ===========================
+# 🧩 IDE / Editor configs
+# ===========================
+.vscode/
+.idea/
+*.swp
+
+# ===========================
+# 🧰 System files
+# ===========================
+.DS_Store
+Thumbs.db
+profile.jpg
